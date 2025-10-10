@@ -1,0 +1,6 @@
+include(shapes.m4)
+digraph {
+    default_action Action("Default Action")
+    custom_action Action("Custom Action") [color=red, style=rounded]
+    default_action -> custom_action -> default_action
+}

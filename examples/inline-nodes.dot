@@ -1,0 +1,4 @@
+include(shapes.m4)
+digraph {
+    _Input("Input") -> _Manual("Unimportant\nwork") -> _Action("Quick\nAction") -> _Output("Output")
+}

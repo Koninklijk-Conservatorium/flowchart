@@ -1,0 +1,21 @@
+include(shapes.m4)
+digraph {
+    /* node definitions */
+    input Input("Creating graph")
+    colleague Input("Colleague\nopinion")
+    design Manual("Designing graph\nin Graphviz")
+    ask Preparation("Waiting for colleague\nsuggestion")
+    compile Action("Compiling graph")
+    graph_result Data("Graph")
+    is_good Decision("Is graph good?")
+    save Action("Save graph")
+    output Output("Graph is done!")
+    /* database-related nodes definitions */
+    Database(Storage) // note no quotation marks!
+    stored_data Data("Graph", Storage)
+    /* graph definition */
+    input -> design -> ask -> compile -> graph_result -> is_good -> save -> output
+    colleague -> ask
+    subgraph store { rank=same save -> Storage -> stored_data }
+    is_good:e -> ask:e [xlabel="no"]
+}
