@@ -137,4 +137,3 @@ dnl . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 dnl . Some examples of custom data rows.
 dnl . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 define(ExcelExport, `DataRow($@) [style=filled; fillcolor=lightgreen]')dnl
-define(ExcelSheet, `[shape="folder"; label=`$1'; style=filled; fillcolor=lightgreen; color=red]')dnl
