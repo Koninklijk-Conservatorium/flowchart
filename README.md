@@ -1,5 +1,8 @@
 # Flowchart
 
+> [!IMPORTANT]
+This is an alpha. Soon, some macra names are going to change to reflect official box names more closely. Stay tuned!
+
 Flowchart is a set of m4 macra made for Graphviz `.dot` files facilitating working, well, with flowcharts. It allows to:
 * use pre-defined custom flowchart shapes ([ISO 5807](https://cdn.standards.iteh.ai/samples/11955/1b7dd254a2a54fd7a89d616dc0570e18/ISO-5807-1985.pdf)),
 * define nodes inline,
