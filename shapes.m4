@@ -79,8 +79,8 @@ define(Data, `[
         ifelse($2,,,style=filled;)dnl
     ]')dnl;
 define(Form, `[
-        class="form`'ifelse($1,,, $1)";
-        label=`$1'
+        class="form`'ifelse($1,,,` $1')";
+        label=`$2'
         shape=note;
         ifelse($2,,,style=filled;)dnl
     ]')dnl;
