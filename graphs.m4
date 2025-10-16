@@ -25,11 +25,13 @@ dnl .
 dnl . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 define(__SG_EXT__, `.sg')dnl File extension.
 define(__SG_PATH__, `graphs')dnl Path to be looked for.
+define(__SG_GRAPH_NODE_ID_PREFIX__, `GRAPHNODE')
+define(__SG_PROCESS_NODE_ID_PREFIX__, `PROCESSNODE')
 dnl . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 dnl .   Graph filepath helpers.
 dnl . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 define(__GRAPH_FILE_PATH, `__GRAPH_PATH(__GRAPH_FILE_NAME($1))')dnl
-define(__GRAPH_FILE, `subgraph { node [id="GRAPHNODE-\N-__GRAPH_FILE_NAME($1)"]; include(__GRAPH_FILE_PATH($1)) }')dnl
+define(__GRAPH_FILE, `subgraph { node [id="__SG_GRAPH_NODE_ID_PREFIX__-\N-__GRAPH_FILE_NAME($1)"]; include(__GRAPH_FILE_PATH($1)) }')dnl
 define(__GRAPH_PATH, `./'__SG_PATH__`/'$1`'__SG_EXT__`')dnl
 dnl . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 dnl .
@@ -108,4 +110,4 @@ dnl .
 dnl . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 define(__OVERRIDE_OUTS, `__FORLOOP(`n',1,__COUNT_ARGS($2),`define(__GET_NTH_ARG($2, n), $1)')')
 define(__PROCESS, `__OVERRIDE_OUTS($1, $2)$1 $3')
-define(Process, `__GRAPH_INS($1) -> subgraph{ node [id="PROCESSNODE-\N-__GRAPH_FILE_NAME($1)"] __PROCESS(__GRAPH_FILE_NAME($1), __GRAPH_OUTS($1), $2) }')dnl
+define(Process, `__GRAPH_INS($1) -> subgraph{ node [id="__SG_PROCESS_NODE_ID_PREFIX__-\N-__GRAPH_FILE_NAME($1)"] __PROCESS(__GRAPH_FILE_NAME($1), __GRAPH_OUTS($1), $2) }')dnl
