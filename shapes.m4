@@ -99,6 +99,7 @@ dnl .
 dnl .   Note:
 dnl .   Use FIELD only inside DataRow.
 dnl .   Feel free to create your custom fields using _ROW function.
+dnl .   To define a new DataRow, use DataRow($@) with 'all arguments' symbol.
 dnl .
 dnl . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 dnl .
