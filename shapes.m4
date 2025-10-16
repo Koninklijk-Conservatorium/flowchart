@@ -73,15 +73,9 @@ define(Database, `$1 [class="database $1";
         style=filled;
     ]')dnl
 define(Data, `[
-        class="data`'ifelse($2,,,$2)";
-        label=`$1'
-        shape=parallelogram;
-        ifelse($2,,,style=filled;)dnl
-    ]')dnl;
-define(Form, `[
         class="form`'ifelse($1,,,` $1')";
         label=`$2'
-        shape=note;
+        shape=parallelogram;
         ifelse($2,,,style=filled;)dnl
     ]')dnl;
 dnl . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
