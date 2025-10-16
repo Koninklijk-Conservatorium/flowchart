@@ -17,7 +17,8 @@ define(__GRAPH_HAS_OUT, `regexp($1, `>>')')dnl
 dnl . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 dnl .
 dnl .   Configuration variables for Graph and Process.
-
+dnl .
+dnl . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 define(__SG_EXT__, `.sg')dnl File extension.
 define(__SG_PATH__, `graphs')dnl Path to be looked for.
 define(__GRAPH_PATH, `./'__SG_PATH__`/'$1`'__SG_EXT__`')dnl
