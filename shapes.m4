@@ -124,14 +124,24 @@ dnl .
 dnl . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 define(_ROW, `<td bgcolor="`$2'" port="$3">$1</td>')dnl
 define(__FILL_ROWS, `ifelse($1,,,``$1'_FILL_ROWS(shift($@))')')dnl
-define(DataRow, `[shape=parallelogram
-    margin=0
+define(__FILL_COLUMNS, `ifelse($1,,,`<tr cellpadding="1">`$1'</tr>__FILL_COLUMNS(shift($@))')')dnl
+define(DataRow, `[shape=note
+    margin=0.1
     height=0
     width=0
     label=<
         <table cellspacing="0"><tr cellpadding="1">
             __FILL_ROWS($@)
         </tr></table>>
+    ]')dnl
+define(DataColumn, `[shape=note
+    margin=0.1
+    height=0
+    width=0
+    label=<
+        <table cellspacing="0">
+            __FILL_COLUMNS($@)
+        </table>>
     ]')dnl
 dnl . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 dnl . Some examples of custom data rows.
