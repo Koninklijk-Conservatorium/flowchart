@@ -1,3 +1,10 @@
+dnl . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+dnl .
+dnl .   UTILITIES
+dnl .
+dnl . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+define(__, `_INTERNAL_M4_MACRO_')
+define(__RANDOM, `esyscmd(uuidgen | sed "s/-/_/g" | tr -d "\n")')dnl
 define(`forloop', `pushdef(`$1', `$2')_forloop(`$1', `$2', `$3', `$4')popdef(`$1')')dnl
 define(`_forloop', `$4`'ifelse($1, `$3', ,`define(`$1', incr($1))_forloop(`$1', `$2', `$3', `$4')')')dnl
 dnl #
@@ -14,7 +21,7 @@ define(__GRAPH_PATH, `./'__SG_PATH__`/'$1`'__SG_EXT__`')dnl
 dnl #
 define(__GRAPH_FILE_NAME, `ifelse(__GRAPH_HAS_IN($1), -1, __GRAPH_FILE_FIRST($1), __GRAPH_HAS_OUT($1), -1, __GRAPH_FILE_LAST($1), __GRAPH_FILE_MIDDLE($1))')dnl
 define(__GRAPH_FILE_PATH, `__GRAPH_PATH(__GRAPH_FILE_NAME($1))')dnl
-define(__GRAPH_FILE, `include(__GRAPH_FILE_PATH($1))')dnl
+define(__GRAPH_FILE, `subgraph { node [id="GRAPHNODE-\N-__GRAPH_FILE_NAME($1)"]; include(__GRAPH_FILE_PATH($1)) }')dnl
 dnl #
 define(__GRAPH_INS, `ifelse(__GRAPH_HAS_IN($1), -1, {}, regexp($1, `\({.+}\) ==', `\1'))')dnl
 define(__GRAPH_OUTS, `ifelse(__GRAPH_HAS_OUT($1), -1, {}, regexp($1, `>> \({.+}\)', `\1'))')dnl
@@ -49,13 +56,13 @@ dnl #   *** in args, file, out args.
 dnl #
 define(__GRAPH, `__SUBST_ALL(__SUBST_ALL($2, IN, $1, count_args($1)), OUT, $3, count_args($3))')dnl
 define(Graph, `__GRAPH(__GRAPH_INS($1), __GRAPH_FILE($1), __GRAPH_OUTS($1))')dnl
-
+dnl
 dnl define(__PROCESS, `forloop(`n', 1, count_args($3), `n')')dnl
 dnl define(__PROCESS, `__GRAPH_FILE_NAME($1) $3')dnl
-
+dnl
 define(__OUTS_REGEXP, `ifelse($1,1,`OUT1.+',`OUT1\(\w\|\W\)+OUT$1.+')')
 dnl define(__PROCESS, `regexp(__GRAPH_FILE($1), __OUTS_REGEXP(3), `\&')')
-dnl \(\w\|\W\)+
+dnl
 define(__OVERRIDE_OUTS, `forloop(`n',1,count_args($2),`define(__GET_NTH_ARG($2, n), $1)')')
 define(__PROCESS, `__OVERRIDE_OUTS($1, $2)$1 $3')
-define(Process, `__GRAPH_INS($1) -> subgraph{__PROCESS(__GRAPH_FILE_NAME($1), __GRAPH_OUTS($1), $2)}')dnl
+define(Process, `__GRAPH_INS($1) -> subgraph{ node [id="PROCESSNODE-\N-__GRAPH_FILE_NAME($1)"] __PROCESS(__GRAPH_FILE_NAME($1), __GRAPH_OUTS($1), $2) }')dnl
