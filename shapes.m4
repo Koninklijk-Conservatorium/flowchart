@@ -139,6 +139,8 @@ define(DataColumn, `[shape=note
         </table>>
     ]')dnl
 dnl . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
-dnl . Some examples of custom data rows.
+dnl .
+dnl .   Some examples of custom data rows.
+dnl .
 dnl . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 define(ExcelExport, `DataRow($@) [style=filled; fillcolor=lightgreen]')dnl
